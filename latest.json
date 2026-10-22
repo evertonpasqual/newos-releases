@@ -1,12 +1,12 @@
 {
   "version": "1.4.0",
   "date": "2026-10-22",
-  "kind": "major",
+  "kind": "minor",
   "history": [
     {
       "version": "1.4.0",
       "notes": "### Atualizações automáticas\n- **Sistema › Atualizações**: o NewOS verifica uma vez por dia (e em\n  \"Verificar agora\") se há versão nova no repositório público de releases\n  `github.com/evertonpasqual/newos-releases` (o código continua privado).\n  Faixa \"NewOS X disponível\" no topo e ponto no menu; a tela mostra o que\n  muda em cada versão e atualiza com um clique (confirmação digitando a\n  versão), acompanhando o progresso ao vivo — o painel reinicia no fim e a\n  tela continua sozinha.\n- **Pacote assinado**: cada versão tem SHA256SUMS assinado (ed25519) pela\n  chave da NewFront; o NewOS recusa pacote sem assinatura válida ou com\n  checksum diferente. A chave pública vai dentro do NewOS; a privada fica\n  só na máquina de quem publica.\n- Aplica pelo mesmo `update-panel.sh` do deploy: preserva a configuração,\n  guarda a versão anterior e volta sozinho se falhar. Versão MAIOR não é\n  aplicada (exige a ISO).\n- `scripts/release-publish.sh`: publica a versão da tag (git archive),\n  assina e atualiza o `latest.json` com as notas do CHANGELOG.",
-      "kind": "major",
+      "kind": "minor",
       "date": "2026-10-22"
     }
   ]
