@@ -1,8 +1,14 @@
 {
-  "version": "1.6.1",
+  "version": "1.6.2",
   "date": "2026-10-23",
   "kind": "patch",
   "history": [
+    {
+      "version": "1.6.2",
+      "notes": "### Correções\n- **Prometheus › Equipamentos SNMP**: só havia uma community v2c (e um\n  usuário v3) para todos os equipamentos; um switch com outra community\n  (ex.: `NEWFRONT`) não era descoberto e a tela mostrava só \"HTTP Error\n  500\". Agora há **várias credenciais com nome** (v2c ou v3), cada\n  equipamento usa a sua, e na descoberta dá para digitar a community na\n  hora: ela vira credencial (ou reaproveita a que já tem a mesma). As\n  credenciais do `snmp.yml` importado também aparecem para escolher.\n- A descoberta mostra o motivo real quando o equipamento não responde\n  (\"sem resposta com a credencial X: confira community, SNMP ligado, UDP\n  161\") em vez do erro HTTP do snmp_exporter.\n- Cada equipamento SNMP pode ter nome, tipo, credencial e cluster\n  alterados depois.",
+      "kind": "patch",
+      "date": "2026-10-23"
+    },
     {
       "version": "1.6.1",
       "notes": "### Correções\n- **Prometheus › Importar**: o `snmp.yml` do generator (mais de 1 MiB)\n  era recusado com \"Part exceeded maximum size of 1024KB\" quando colado na\n  caixa de texto. A importação agora aceita até 64 MiB por arquivo, colado\n  ou enviado, e o teste cobre um `snmp.yml` grande.",
