@@ -1,8 +1,14 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.1",
   "date": "2026-10-23",
-  "kind": "minor",
+  "kind": "patch",
   "history": [
+    {
+      "version": "1.5.1",
+      "notes": "### Correções\n- **Prometheus › Alvos**: o `instance` dos hosts agora sai como\n  `nome:porta` (ex.: `NEWLAB01-PVE:9100`), o formato das dashboards de\n  node_exporter no Grafana. Antes saía só o nome, e a dashboard que filtra\n  por `nome:9100` não encontrava o host. A configuração é regerada sozinha\n  ao atualizar (no modo manual o `prometheus.yml` não é tocado).\n- **Sistema › Servidor**: o `/etc/hosts` não podia ser salvo quando havia\n  uma linha antiga com o nome do próprio servidor num IP anterior (arquivo\n  do instalador ou servidor que mudou de IP). Essa linha agora é tratada\n  como do sistema e regerada com o IP atual.",
+      "kind": "patch",
+      "date": "2026-10-23"
+    },
     {
       "version": "1.5.0",
       "notes": "### Novo\n- **Sistema › Servidor**: troca do hostname e do domínio pelo painel, com\n  prévia do nome completo (FQDN). Atualiza `hostnamectl`, `/etc/hostname`,\n  `/etc/mailname`, as linhas do próprio servidor no `/etc/hosts` e a\n  configuração do NewOS. Opcional: sincronizar o novo nome no Zabbix Agent\n  e no alvo local do Prometheus.\n- **Editor do `/etc/hosts`**: entradas do administrador (IP, nomes,\n  comentário) numa tabela; as linhas do sistema (localhost, IPv6 e o\n  próprio servidor) são mantidas automaticamente. Valida IPs e nomes,\n  recusa o mesmo nome em dois IPs e guarda a cópia anterior em\n  `/etc/hosts.newos-bak`.\n- Helper `newos-system` e teste `scripts/dev/system-test.sh`\n  (20 verificações), incluído no pipeline como etapa 11.\n- **Sistema › Backup e restauração**: backup do próprio NewOS num pacote\n  único (nome e `/etc/hosts`, rede, montagens e pools ZFS, módulos e\n  componentes ligados com a configuração de cada um, catálogo do Bareos,\n  usuários e ajustes do painel, chaves do SSH). Pode ser protegido por\n  senha (AES-256), baixado pelo navegador e restaurado neste servidor ou\n  num NewOS recém-instalado. Antes de restaurar, a tela confere versão,\n  integridade (sha256) e o que existe aqui (placas de rede, discos pelo\n  UUID) e deixa escolher cada parte. Os módulos são reinstalados e a\n  configuração volta por cima; as sessões do painel caem no fim.\n- **Agendamento** do backup do sistema (diário ou semanal) com retenção,\n  para uma pasta num disco montado e/ou um bucket S3 (AWS, MinIO, Ceph,\n  Wasabi; assinatura v4 sem dependências), com botão de teste do bucket.\n  Último resultado exposto ao Prometheus (`newos_sysbackup_last_status`).\n- Helper `newos-sysbackup`, unidades `newos-sysbackup.{service,timer}` e\n  teste `scripts/dev/sysbackup-test.sh` (S3 real via versitygw, download,\n  servidor \"estragado\" e restaurado pelo painel), etapa 12 do pipeline.",
