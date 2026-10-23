@@ -1,8 +1,14 @@
 {
-  "version": "1.6.2",
+  "version": "1.7.0",
   "date": "2026-10-23",
-  "kind": "patch",
+  "kind": "minor",
   "history": [
+    {
+      "version": "1.7.0",
+      "notes": "### Novo\n- **Módulo Firewall** (nftables, opcional, menu **Firewall**). Zonas = as\n  funções das interfaces em Network (WAN, LAN, DMZ, Gerência).\n  - **Visão geral**: estado, atividade **ao vivo** (o que foi bloqueado ou\n    liberado e por quê), quem mais foi bloqueado (com \"bloquear sempre\"),\n    zonas e as **portas abertas deste servidor** com quem pode chegar nelas.\n  - **Regras** de entrada (acesso a este servidor) e de encaminhamento\n    (entre redes): liberar/bloquear/recusar por zona, endereço, protocolo e\n    porta, com atalhos de serviços, ordem, liga/desliga, registro opcional e\n    contador de pacotes ao vivo.\n  - **NAT**: a LAN sai pela WAN (masquerade) e redirecionamento de portas\n    (porta da WAN → IP:porta interno, origem opcional).\n  - **Proteção**: quem administra (painel/SSH de qualquer lugar ou só de\n    zonas/endereços confiáveis), bloqueio automático de força bruta e de\n    varredura de portas (expira sozinho), SYN flood, ping com limite,\n    pacotes inválidos, lista de bloqueio.\n  - Ao ligar, o que já estava em uso continua liberado. Painel e SSH nunca\n    ficam atrás das suas regras. **Toda alteração volta sozinha em 2\n    minutos** se não for confirmada (faixa no topo, como na rede). O\n    nftables valida antes de aplicar; nada muda se recusar.\n- **Verificação em duas etapas (MFA)** no painel, por usuário (Minha\n  conta): QR code para qualquer app autenticador (Google/Microsoft\n  Authenticator, Authy…), 8 códigos de recuperação de uso único, o mesmo\n  código não vale duas vezes. Contas mostra quem usa MFA e o administrador\n  pode desativar o de quem perdeu o celular.\n- **Hora certa com chrony** usando sempre a.ntp.br, b.ntp.br, c.ntp.br,\n  d.ntp.br e ntp.usp.br (sem o pool do Debian), na ISO e nos servidores\n  atualizados. Sistema › Servidor mostra a sincronização e cada servidor.",
+      "kind": "minor",
+      "date": "2026-10-23"
+    },
     {
       "version": "1.6.2",
       "notes": "### Correções\n- **Prometheus › Equipamentos SNMP**: só havia uma community v2c (e um\n  usuário v3) para todos os equipamentos; um switch com outra community\n  (ex.: `NEWFRONT`) não era descoberto e a tela mostrava só \"HTTP Error\n  500\". Agora há **várias credenciais com nome** (v2c ou v3), cada\n  equipamento usa a sua, e na descoberta dá para digitar a community na\n  hora: ela vira credencial (ou reaproveita a que já tem a mesma). As\n  credenciais do `snmp.yml` importado também aparecem para escolher.\n- A descoberta mostra o motivo real quando o equipamento não responde\n  (\"sem resposta com a credencial X: confira community, SNMP ligado, UDP\n  161\") em vez do erro HTTP do snmp_exporter.\n- Cada equipamento SNMP pode ter nome, tipo, credencial e cluster\n  alterados depois.",
