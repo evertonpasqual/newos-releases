@@ -1,8 +1,14 @@
 {
-  "version": "1.8.0",
+  "version": "1.9.0",
   "date": "2026-10-23",
   "kind": "minor",
   "history": [
+    {
+      "version": "1.9.0",
+      "notes": "### Novo\n- **Instalação pergunta a rede** (ISO nova): para o cliente instalar\n  sozinho, antes de apagar o disco o instalador mostra telas para escolher\n  a **placa de rede** (com MAC e se o cabo está conectado), **IP fixo ou\n  DHCP**, **IP**, **máscara** (255.255.255.0 ou 24), **gateway** e **DNS**,\n  com validação (gateway precisa estar na mesma rede) e uma tela final de\n  confirmação que mostra o disco que será apagado e o endereço do painel.\n  Mais nada é perguntado. Para instalar sem perguntas:\n  `NETWORK_ASK=\"no\"` no `newos.conf`, ou o parâmetro de kernel\n  `newos.net=conf` / `newos.net=placa:IP/24:gateway`.\n- **Proteção do boot (senha do GRUB)**: sem a senha, ninguém no console\n  edita o boot (tecla `e`) nem abre o console do GRUB — o caminho para\n  trocar a senha de root. O servidor continua ligando sozinho; opções\n  avançadas e modo de recuperação pedem a senha (usuário `root`). A ISO já\n  instala protegido (`GRUB_PASSWORD` no `newos.conf`); em **Sistema ›\n  Servidor** o administrador troca ou remove a senha (confirmando a própria\n  senha do painel). Servidores atualizados ficam sem senha até alguém\n  defini-la ali.\n\n### Melhorado\n- Sair do painel fecha só os terminais abertos **naquele navegador**; os de\n  outro navegador da mesma pessoa continuam.\n\n### Corrigido\n- Teste do backup do sistema tolera a queda do SSH durante a restauração.",
+      "kind": "minor",
+      "date": "2026-10-23"
+    },
     {
       "version": "1.8.0",
       "notes": "### Novo\n- **Sistema › Terminal** (como o do Cockpit): shell de **root** deste\n  servidor no navegador, sem precisar de SSH. Só para contas com perfil de\n  administrador; para abrir, o painel pede a senha de novo (e o código do\n  MFA, se a pessoa usar), o que vale por 30 minutos. Fonte ajustável,\n  aparência (escuro, claro, NewIO), \"Nova sessão\". O shell roda fora do\n  sandbox do painel (um serviço transitório do systemd). Abrir e fechar vão\n  para a auditoria e para o journal (`newos-terminal`). O terminal fecha\n  sozinho sem digitação pelo tempo de sessão inativa e ao sair do painel.\n  Terminal no navegador: xterm.js 5.5 (MIT), servido pelo próprio painel.\n- **Sessão inativa**: quem deixa o painel aberto sem usar é desconectado\n  sozinho (padrão 15 min, ajustável em Usuários › Contas: 5 a 120 min). Um\n  minuto antes aparece o aviso com contagem e \"Continuar conectado\"; as\n  telas que se atualizam sozinhas não contam como uso; com várias abas, a\n  que está em uso mantém a sessão. A tela de login diz o motivo.",
