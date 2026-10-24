@@ -10,6 +10,12 @@
       "date": "2026-10-24"
     },
     {
+      "version": "1.9.1",
+      "notes": "### Corrigido\n- **Ponte para a 2.0**: o atualizador passa a aplicar qualquer versão mais\n  nova, inclusive as maiores (1.9.x → 2.0.x), sem reinstalar pela ISO.\n  Depois desta, **Sistema › Atualizações** oferece a 2.0.",
+      "kind": "patch",
+      "date": "2026-10-24"
+    },
+    {
       "version": "1.9.0",
       "notes": "### Novo\n- **Instalação pergunta a rede** (ISO nova): para o cliente instalar\n  sozinho, antes de apagar o disco o instalador mostra telas para escolher\n  a **placa de rede** (com MAC e se o cabo está conectado), **IP fixo ou\n  DHCP**, **IP**, **máscara** (255.255.255.0 ou 24), **gateway** e **DNS**,\n  com validação (gateway precisa estar na mesma rede) e uma tela final de\n  confirmação que mostra o disco que será apagado e o endereço do painel.\n  Mais nada é perguntado. Para instalar sem perguntas:\n  `NETWORK_ASK=\"no\"` no `newos.conf`, ou o parâmetro de kernel\n  `newos.net=conf` / `newos.net=placa:IP/24:gateway`.\n- **Proteção do boot (senha do GRUB)**: sem a senha, ninguém no console\n  edita o boot (tecla `e`) nem abre o console do GRUB — o caminho para\n  trocar a senha de root. O servidor continua ligando sozinho; opções\n  avançadas e modo de recuperação pedem a senha (usuário `root`). A ISO já\n  instala protegido (`GRUB_PASSWORD` no `newos.conf`); em **Sistema ›\n  Servidor** o administrador troca ou remove a senha (confirmando a própria\n  senha do painel). Servidores atualizados ficam sem senha até alguém\n  defini-la ali.\n\n### Melhorado\n- Sair do painel fecha só os terminais abertos **naquele navegador**; os de\n  outro navegador da mesma pessoa continuam.\n\n### Corrigido\n- Teste do backup do sistema tolera a queda do SSH durante a restauração.",
       "kind": "minor",
