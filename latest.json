@@ -1,8 +1,14 @@
 {
-  "version": "2.0.0",
+  "version": "2.0.1",
   "date": "2026-10-24",
-  "kind": "major",
+  "kind": "patch",
   "history": [
+    {
+      "version": "2.0.1",
+      "notes": "### Corrigido\n- **Backup e restauração**: backup de uma versão anterior agora restaura em\n  qualquer versão mais nova, inclusive de outra versão maior (1.9.0 → 2.0.x).\n  Só é recusado backup de versão **mais nova** que a instalação.\n- **Atualizações**: toda versão mais nova é aplicada pela atualização, sem\n  ISO, inclusive as maiores (1.9.x → 2.0.x, 2.9.x → 3.0.0). A ISO fica só\n  para instalar servidores novos.",
+      "kind": "patch",
+      "date": "2026-10-24"
+    },
     {
       "version": "2.0.0",
       "notes": "### Novo\n- **Módulo Benchmark** (Ferramentas › Benchmark): mede o desempenho real do\n  servidor e gera um **relatório na identidade NewOS** para apresentar à\n  diretoria (resumo executivo, classificação, gráficos, resultados, ambiente,\n  campo de parecer técnico editável, assinaturas, imprimir/PDF e \"salvar com\n  parecer\").\n  - **Disco (fio)**: escolha onde testar — sistema de arquivos (arquivo\n    temporário), pool ZFS (volume temporário, como o disco de uma VM) ou disco\n    vazio (teste direto, com confirmação). Perfil **rápido** (os comandos de\n    referência: gravação e leitura sequencial 1 MB, fila 32, `--fsync=10000`)\n    ou **completo** (baseline: sequencial, aleatório 4K fila 64 × 4 jobs, misto\n    70/30 e latência). Tamanho e tempo ajustáveis; o arquivo de teste é apagado\n    ao final, mesmo se interrompido.\n  - **Rede (iperf3)**: este servidor como **servidor** (liga/desliga, porta,\n    libera a porta no Firewall só enquanto ligado, lista os testes recebidos)\n    ou como **cliente** (IP, porta, `-P` 1/4/10/20/outro, envio, recebimento\n    `-R` ou os dois `--bidir`, TCP ou UDP com banda alvo).\n  - **Internet**: download, upload, latência e jitter com vários fluxos, pela\n    Cloudflare (ponto mais próximo) ou pelo Speedtest.net, com velocímetros.\n  - Tudo ao vivo: etapas, números animados e gráfico enquanto o teste roda;\n    histórico com relatórios guardados no servidor; um teste por vez.\n- **Módulo Tráfego ao vivo** (Configurações › Network › Tráfego ao vivo):\n  banda de cada interface com gráfico de 60 s e uso do link, quem (IP) está\n  falando com o servidor e quanto (entrando, saindo, passando), serviços por\n  porta e as maiores conexões, atualizando a cada 2 s (conntrack com contagem\n  de bytes). Botão **Abrir o iptraf-ng**, que roda o iptraf-ng no navegador\n  pelo terminal do painel (só administradores, com a senha de novo).\n\n### Melhorado\n- Menu: módulos podem acrescentar itens dentro de grupos fixos (Network).\n- Terminal do painel abre aplicativos de tela cheia de uma lista fixa\n  (iptraf-ng), além do shell.",
