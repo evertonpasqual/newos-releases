@@ -1,8 +1,14 @@
 {
-  "version": "2.3.0",
+  "version": "2.4.0",
   "date": "2026-10-27",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.4.0",
+      "notes": "### Novo\n- Firewall › Proteção › **País / região**: liberar só alguns países (ex.: só\n  Brasil) ou bloquear países. Vale na WAN e nos redirecionamentos de porta;\n  redes internas nunca são bloqueadas; as faixas de IP são baixadas na hora e\n  atualizadas toda semana. Recusa a alteração se o IP de quem está no painel\n  ficaria bloqueado.\n- Usuários › Contas: **senha dos usuários do Linux** (root e newfront) pelo\n  painel — só administrador, confirmando a própria senha; a senha padrão é\n  recusada e a troca fica registrada.\n\n### Corrigido\n- Backup do sistema: \"Restaurar de outro NewOS (S3)\" não listava os\n  servidores e backups para escolher.\n- Firewall: \"Bloquear sempre\" era desfeito sozinho após 2 minutos sem\n  confirmação; agora a lista de bloqueio vale na hora. Bloquear o próprio IP é\n  recusado; IPs já bloqueados aparecem marcados na visão geral; um IP e uma\n  rede que o contém na lista não fazem mais o firewall recusar as regras.\n- Serviços: o MariaDB não mostra mais o aviso \"Referenced but unset\n  environment variable\" (MYSQLD_OPTS, _WSREP_NEW_CLUSTER).\n- Instalador: mensagens de status do systemd não aparecem mais por cima das\n  telas (rede, \"TPM 2.0 necessário\").\n- Lint: o JavaScript do painel passa a ser verificado (node --check).",
+      "kind": "minor",
+      "date": "2026-10-27"
+    },
     {
       "version": "2.3.0",
       "notes": "### Novo\n- **Disco criptografado com TPM** (ISO nova): o LVM do sistema fica dentro de\n  um LUKS2 que o próprio servidor destrava no boot pelo TPM 2.0 (Clevis, PCR\n  7): ninguém digita senha no dia a dia, e o disco levado para outra máquina\n  (ou copiado) não abre. `/boot` e a partição EFI ficam fora (o GRUB lê o\n  kernel); a senha padrão da NewFront fica como **chave de recuperação**.\n  - **TPM 2.0 é pré-requisito**: sem ele o instalador mostra o que fazer\n    (Proxmox: TPM State; VMware: vTPM) e para **antes** de apagar o disco.\n  - Se o TPM não destravar (VM levada para outro host, TPM trocado), a tela\n    do boot pede a chave de recuperação.\n  - **Armazenamento**: um disco somado ao LVM do sistema também entra\n    criptografado e preso ao TPM, e destrava junto no boot. O mapa dos discos\n    mostra \"LVM criptografado (LUKS2 + TPM)\".\n  - `DISK_ENCRYPTION=\"tpm2\"` no `newos.conf`; `\"no\"` volta ao disco aberto.\n- **Logo novo** da NewFront (horizontal, \"Soluções em Cloud e TI\") no painel,\n  no login, no boot, no GRUB e nos relatórios.\n- **Login com corredor de datacenter animado** atrás do cartão: racks dos\n  dois lados com os LEDs piscando, a luz do teto e o reflexo no piso, a\n  câmera avançando devagar. Desenhado no navegador (sem vídeo), leve, pausa\n  com a aba escondida e fica parado para quem usa \"reduzir movimento\".",
