@@ -1,8 +1,14 @@
 {
-  "version": "2.0.1",
-  "date": "2026-10-24",
-  "kind": "patch",
+  "version": "2.1.0",
+  "date": "2026-10-27",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.1.0",
+      "notes": "### Novo\n- **Dashboard: IP de saída.** Abaixo de \"Atualizado\", discreto: por qual IP\n  público este servidor navega (consulta ao ifconfig.me a cada 10 min, com\n  reservas), com botão de copiar.\n- **Prometheus: \"Monitorar um host novo\"** em 3 passos na tela do\n  Prometheus: o comando pronto para colar no host (baixa o\n  `instalar-node-exporter.sh` direto deste NewOS, sem login), o cadastro em\n  Alvos e as **dashboards do Grafana prontas para importar**:\n  - *NewOS · Host (node_exporter)* e *NewOS · Proxmox VE (pve-exporter)*,\n    formato do Grafana 12;\n  - usam o Prometheus padrão do Grafana (sem mapear fonte de dados) e têm os\n    filtros **cliente › cluster › job › host** com os rótulos que o NewOS põe\n    nos alvos; a do Proxmox não vem mais presa a um cluster de cliente.\n- **Zabbix Proxy otimizado** já na instalação: Server padrão\n  `mon.newfront.cloud`, perfil para ~50 hosts e VMware (pollers, pingers,\n  coletores VMware, caches, fila híbrida em memória e 24 h de fila se o Server\n  cair), validado pelo próprio `zabbix_proxy -T`. Campos de desempenho na tela\n  do Proxy e o botão **Aplicar o perfil otimizado**. Ajustes feitos depois\n  são preservados.\n\n### Corrigido\n- **Zabbix: trocar a versão antes de ligar o Agent e o Proxy** dava \"O script\n  action.sh do modulo falhou\". Agora a versão é escolhida primeiro e os\n  componentes já instalam nela.",
+      "kind": "minor",
+      "date": "2026-10-27"
+    },
     {
       "version": "2.0.1",
       "notes": "### Corrigido\n- **Backup e restauração**: backup de uma versão anterior agora restaura em\n  qualquer versão mais nova, inclusive de outra versão maior (1.9.0 → 2.0.x).\n  Só é recusado backup de versão **mais nova** que a instalação.\n- **Atualizações**: toda versão mais nova é aplicada pela atualização, sem\n  ISO, inclusive as maiores (1.9.x → 2.0.x, 2.9.x → 3.0.0). A ISO fica só\n  para instalar servidores novos.",
