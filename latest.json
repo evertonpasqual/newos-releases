@@ -1,8 +1,14 @@
 {
-  "version": "2.6.0",
+  "version": "2.7.0",
   "date": "2026-10-28",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.7.0",
+      "notes": "### Novo\n- **Controle remoto pelo NewOS Manager** (precisa do Manager 1.1). As ordens\n  chegam na resposta do sinal de vida, então funcionam atrás de qualquer\n  NAT/firewall e mesmo sem a VPN do cliente.\n  - **Atualizar**: o Manager pede e o NewOS aplica sozinho. Só aceita pacote\n    assinado pela NewFront, e o resultado volta para o Manager.\n  - **Suspender**: para e desabilita Zabbix, Prometheus e exporters, Bareos,\n    Tráfego e o backup do sistema. Guarda o que estava ligado e trava o\n    painel com o aviso “Servidor suspenso”. Nada é apagado.\n  - **Reativar**: religa exatamente o que estava ligado.\n  - **Desativar por completo**: para tudo, apaga as credenciais (Zabbix com\n    PSK e banco do proxy, chaves do S3 e senha do backup do sistema, token do\n    Manager) e os dados coletados (Prometheus, Bareos), trava o painel em\n    “Desativado” e desliga o agente. Volta só reinstalando pela ISO.\n  - Pelo SSH, como root: `newos-link suspend` / `newos-link resume`.\n\n### Segurança\n- O usuário do painel só pode chamar `newos-link` para ativar e consultar o\n  estado. Suspender e desativar vêm só do Manager, pelo agente.",
+      "kind": "minor",
+      "date": "2026-10-28"
+    },
     {
       "version": "2.6.0",
       "notes": "### Corrigido\n- **Prometheus: \"Job com nome repetido: pve\"**. Importar um Prometheus com\n  vários Proxmox no mesmo job deixava o prometheus.yml com o job repetido.\n  Daí em diante nenhuma alteração era aceita (nem remover host) e o Prometheus\n  ficava com a configuração antiga. Agora cada Proxmox ganha um job próprio e\n  o rótulo `job` continua o original (dashboards e alertas não mudam).\n- **Importar de novo o mesmo arquivo** atualiza o que já existe com o mesmo\n  nome: hosts, jobs, clusters, Proxmox, jobs extras e linhas do /etc/hosts.\n  Antes recusava ou deixava o IP antigo.\n- **Tempo limite (scrape_timeout) por job** é importado e pode ser ajustado em\n  Jobs e clusters. Antes era perdido, e um exporter lento (ZFS, storage\n  grande) aparecia fora do ar por estourar o tempo.\n- **Instalar o node_exporter num host sem internet**: o script ficava parado\n  tentando o GitHub. Agora baixa os pacotes deste NewOS, com o sha256\n  conferido, e só tenta o GitHub se o NewOS não entregar. Toda consulta tem\n  tempo limite.\n\n### Novo\n- **Remover vários hosts de uma vez** no Prometheus: marque os hosts (ou\n  todos os do filtro) e clique em Remover selecionados.\n- **Motivo da falha à vista**: o host fora do ar mostra o erro da última\n  coleta na própria linha.\n- **zfs_exporter**: o script de instalação instala o zfs_exporter (porta\n  9134) quando o host tem pool ZFS.\n- **Comando de instalação**: usa o endereço com que você abriu o painel e\n  mostra os outros IPs do NewOS como alternativa.",
