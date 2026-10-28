@@ -1,8 +1,14 @@
 {
-  "version": "2.4.0",
+  "version": "2.4.1",
   "date": "2026-10-27",
-  "kind": "minor",
+  "kind": "patch",
   "history": [
+    {
+      "version": "2.4.1",
+      "notes": "### Corrigido\n- Backup do sistema › Restaurar de outro NewOS (S3): os servidores listados\n  ficavam invisíveis (só apareciam ao passar o mouse ou clicar).",
+      "kind": "patch",
+      "date": "2026-10-27"
+    },
     {
       "version": "2.4.0",
       "notes": "### Novo\n- Firewall › Proteção › **País / região**: liberar só alguns países (ex.: só\n  Brasil) ou bloquear países. Vale na WAN e nos redirecionamentos de porta;\n  redes internas nunca são bloqueadas; as faixas de IP são baixadas na hora e\n  atualizadas toda semana. Recusa a alteração se o IP de quem está no painel\n  ficaria bloqueado.\n- Usuários › Contas: **senha dos usuários do Linux** (root e newfront) pelo\n  painel — só administrador, confirmando a própria senha; a senha padrão é\n  recusada e a troca fica registrada.\n\n### Corrigido\n- Backup do sistema: \"Restaurar de outro NewOS (S3)\" não listava os\n  servidores e backups para escolher.\n- Firewall: \"Bloquear sempre\" era desfeito sozinho após 2 minutos sem\n  confirmação; agora a lista de bloqueio vale na hora. Bloquear o próprio IP é\n  recusado; IPs já bloqueados aparecem marcados na visão geral; um IP e uma\n  rede que o contém na lista não fazem mais o firewall recusar as regras.\n- Serviços: o MariaDB não mostra mais o aviso \"Referenced but unset\n  environment variable\" (MYSQLD_OPTS, _WSREP_NEW_CLUSTER).\n- Instalador: mensagens de status do systemd não aparecem mais por cima das\n  telas (rede, \"TPM 2.0 necessário\").\n- Lint: o JavaScript do painel passa a ser verificado (node --check).",
