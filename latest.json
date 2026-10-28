@@ -1,8 +1,14 @@
 {
-  "version": "2.4.1",
-  "date": "2026-10-27",
-  "kind": "patch",
+  "version": "2.5.0",
+  "date": "2026-10-28",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.5.0",
+      "notes": "### Novo\n- **NewOS Manager** (console central da NewFront em\n  `newmanager.newfront.cloud`): cada NewOS manda um sinal de vida a cada\n  60 s pelo agente `newos-link` (HTTPS, só de saída; funciona atrás de\n  qualquer NAT). No Manager aparecem cliente, versão, online/offline e o\n  básico de uso. Nada do conteúdo do servidor sai dele.\n- **Ativação obrigatória na ISO nova**: depois do login, o painel só libera\n  com a **chave de ativação** gerada no Manager (uso único, presa à\n  máquina, exige internet) e com a troca da senha padrão do admin. Quem\n  tiver a ISO e a senha padrão não passa da tela de ativação.\n- Servidores **atualizados** (instalados antes) não travam: entram no\n  Manager como **pendentes** e são aprovados lá.\n- Servidor revogado no Manager volta a pedir a chave.\n- Sistema › Servidor: cartão **NewOS Manager** (estado, cliente, último\n  contato, \"Verificar agora\").",
+      "kind": "minor",
+      "date": "2026-10-28"
+    },
     {
       "version": "2.4.1",
       "notes": "### Corrigido\n- Backup do sistema › Restaurar de outro NewOS (S3): os servidores listados\n  ficavam invisíveis (só apareciam ao passar o mouse ou clicar).",
