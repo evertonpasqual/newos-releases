@@ -1,8 +1,14 @@
 {
-  "version": "2.7.1",
+  "version": "2.8.0",
   "date": "2026-10-29",
-  "kind": "patch",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.8.0",
+      "notes": "### Novo\n- **Módulo Logs (Graylog)**: o NewOS passa a ser o concentrador de syslog da\n  rede do cliente, como o Zabbix Proxy é para as métricas (precisa do NewOS\n  Manager 1.2). Passo a passo completo em `docs/logs-graylog.md`.\n  - **Recebe** syslog em UDP e TCP 514 de servidores Linux e Windows (NXLog),\n    VMware ESXi, Proxmox, firewalls, switches e roteadores.\n  - **Envia ao Graylog central** por GELF/TCP com TLS mútuo. Cada mensagem\n    leva `cliente`, `newos`, `origem_ip`, `origem`, `app` e `facility`.\n  - **Certificado deste NewOS** emitido pelo Manager: a chave nasce aqui e não\n    sai, vale 30 dias e é renovado sozinho. O Graylog só aceita certificados\n    da CA do Manager.\n  - **Fila em disco** (padrão 5 GB): internet ou Graylog fora do ar, nada se\n    perde, e tudo é enviado quando voltar.\n  - **Tela Monitoramento › Logs**:\n    - estado, mensagens recebidas, enviadas e na fila, e o erro do rsyslog\n      quando não consegue enviar;\n    - \"Enviar mensagem de teste\", que também testa o TLS;\n    - quem está mandando, com as últimas linhas de cada fonte (cópia local\n      de alguns dias);\n    - os comandos prontos, com o IP do NewOS, para cada tipo de equipamento.\n  - Com o Firewall ligado, a porta é liberada **só para redes internas**.\n  - **Suspenso pelo Manager**: para de receber e de enviar, e volta sozinho\n    ao reativar. Desativado por completo: certificado, fila e cópia local\n    são apagados.\n\n### Melhorado\n- Firewall: os módulos podem ter regras próprias, que saem quando o módulo é\n  desligado. Editar uma delas mantém o dono.\n- ISO: `rsyslog-gnutls` incluído.",
+      "kind": "minor",
+      "date": "2026-10-29"
+    },
     {
       "version": "2.7.1",
       "notes": "### Melhorado\n- **Relatórios do Benchmark saem perfeitos no PDF** (Imprimir / PDF): página\n  A4 com margens certas, cores e gráficos fiéis, os cartões numa linha só,\n  título nunca sozinho no fim da página, cabeçalho da tabela repetido em cada\n  página e \"Ambiente testado\" e \"Parecer técnico + assinaturas\" sempre\n  inteiros. Vale para disco (fio), rede (iperf3) e internet. Relatórios feitos\n  antes da atualização são refeitos no novo formato ao abrir.\n- **Telas de rede da instalação com a identidade do GRUB**: fundo azul\n  NewFront, janela azul-escura, bordas, títulos e botões em teal.\n- As mensagens de serviços do sistema (\"FAILED ...\") não aparecem mais por\n  cima das telas da instalação.",
