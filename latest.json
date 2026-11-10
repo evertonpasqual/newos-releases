@@ -1,8 +1,14 @@
 {
-  "version": "2.14.0",
-  "date": "2026-11-08",
-  "kind": "minor",
+  "version": "2.14.1",
+  "date": "2026-11-10",
+  "kind": "patch",
   "history": [
+    {
+      "version": "2.14.1",
+      "notes": "### Corrigido\n- **instalar-rsyslog.sh**:\n  - o encaminhamento TCP agora declara `StreamDriver=\"ptcp\"`. Antes, um host com `DefaultNetstreamDriver gtls` global e sem o `rsyslog-gnutls` ficava sem mandar nada, sem aviso;\n  - o reinício do rsyslog não trava mais: se ele não parar em 25 s, é encerrado à força, com aviso;\n  - `instalar` e `testar` conferem a conexão de verdade com o NewOS (TCP estabelecido) e mostram o erro do rsyslog quando não conecta, em vez de só \"mensagem enviada\".\n- **NBackup (FortiGate):** a coleta recusada passa a separar três casos:\n  - token aceito, mas sem permissão de backup (o perfil precisa de System = Read), com o comando do CLI;\n  - Trusted Host;\n  - token errado.\n- **NBackup:** espaços e quebras de linha coladas junto com o token são removidos.\n\n### Novo\n- **Logs › Quem está mandando:** botão **Remover**. Apaga a cópia local de uma fonte e faz o rsyslog soltar o arquivo, então a fonte não some de vez. Se ela continuar mandando, volta com o nome atual.",
+      "kind": "patch",
+      "date": "2026-11-10"
+    },
     {
       "version": "2.14.0",
       "notes": "### Novo\n- **Sistema › Notificações**: avisos deste servidor por e-mail, por uma conta autenticada.\n  - **Conta SMTP:** STARTTLS (587), SSL/TLS (465) ou sem criptografia (só rede interna). Certificado verificado por padrão.\n  - **Destinatários:** até 20.\n  - **Modo:** \"só erros e avisos\" ou \"todas as notificações\".\n  - **Categorias:** cada uma liga e desliga.\n  - **Teste:** botão \"Salvar e enviar um e-mail de teste\".\n- **O que é avisado:**\n  - backup do sistema (falhou, não chegou ao S3, concluído);\n  - NBackup (coleta falhou, chave do equipamento mudou, S3, configuração alterada);\n  - rotinas do Bareos;\n  - disco acima dos limites (85% e 95%, ajustáveis);\n  - serviço em falha e quando ele volta;\n  - atualização (falhou, aplicada, versão nova);\n  - segurança (5 logins errados, firewall desfez uma mudança não confirmada, login de administrador);\n  - suspensão ou desativação pelo NewOS Manager.\n- **E-mail na identidade NewFront:**\n  - logo embutido (aparece mesmo sem baixar imagens), faixa azul e verde-água;\n  - selo de erro, aviso, concluído ou resolvido;\n  - detalhes, log e botão \"Abrir no painel\";\n  - versão em texto puro junto.\n- **Sem spam:**\n  - o mesmo problema só volta a ser avisado depois de 6 horas, e quando resolve chega um \"Resolvido\";\n  - com o SMTP fora, os avisos ficam na fila e o NewOS tenta de novo a cada 5 minutos, por até 24 horas.\n- **Tela:** histórico dos envios e problemas em aberto.\n\n### Segurança\n- **Senha do e-mail:** cifrada no servidor, só o root lê, nunca volta para a tela nem vai no e-mail.\n- **Backup do sistema:** passa a levar a conta de e-mail.\n- **Desativar pelo NewOS Manager:** agora também apaga a conta de e-mail e as credenciais do NBackup (depois de mandar o aviso).",
