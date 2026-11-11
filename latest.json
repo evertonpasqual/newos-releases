@@ -1,8 +1,14 @@
 {
-  "version": "2.15.0",
+  "version": "2.16.0",
   "date": "2026-11-11",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.16.0",
+      "notes": "### Novo\n- **Network › Troubleshooting**, segunda leva:\n  - **Loop na rede:** envia um quadro de teste e vê se ele volta pela própria interface. Também mede broadcasts por segundo, quadros repetidos e mudanças de topologia do STP (TCN), e mostra quem mais manda broadcast;\n  - **DHCP e IP duplicado:** lista todos os servidores DHCP que respondem, sem aceitar oferta (acha DHCP não autorizado), e confere por ARP se um IP está duplicado, livre ou em uso;\n  - **Vizinhos LLDP/CDP:** switch, porta, VLAN nativa e IP de gerência de onde o servidor está ligado;\n  - **Captura de pacotes:** `tcpdump` com filtro, até 20 MB, com resumo na tela e `.pcap` para baixar e abrir no Wireshark;\n  - **MTU do caminho:** maior pacote que chega sem fragmentar, apontando quando o ICMP está bloqueado no caminho (buraco negro de MTU);\n  - **HTTP/TLS:** código HTTP, tempos de DNS, conexão, TLS e primeira resposta, cabeçalhos e certificado (confiável ou não, dias até vencer, nomes);\n  - **SNMP:** teste v2c ou v3 com nome, descrição, uptime e interfaces do equipamento. A community e as senhas não ficam gravadas nem aparecem na saída.",
+      "kind": "minor",
+      "date": "2026-11-11"
+    },
     {
       "version": "2.15.0",
       "notes": "### Novo\n- **Network › Troubleshooting** (módulo novo, só para administradores, com registro na auditoria):\n  - **DNS:** consulta com `dig`, comparando o DNS do servidor com outros;\n  - **Ping e rota:** perda e latência, com o MTR mostrando cada salto;\n  - **Portas abertas:** portas e serviços de um host (`nmap`);\n  - **Descoberta de rede:** IP, MAC, fabricante e nome dos equipamentos de uma faixa, até /20;\n  - **Saúde das interfaces:** link, velocidade, duplex, erros e descartes, destacando o que está aumentando agora.\n- **Monitoramento › Zabbix › Proxy › Hosts monitorados:** lista os hosts que o Zabbix Server entregou a este proxy, com interfaces e quantidade de itens ativos.",
