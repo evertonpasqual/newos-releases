@@ -1,8 +1,14 @@
 {
-  "version": "2.14.1",
-  "date": "2026-11-10",
+  "version": "2.14.2",
+  "date": "2026-11-11",
   "kind": "patch",
   "history": [
+    {
+      "version": "2.14.2",
+      "notes": "### Alterado\n- Monitoramento › Zabbix: a **8.0 LTS** agora aparece como versão estável (o repositório oficial já entrega a 8.0.0 final) e o aviso de prévia saiu da tela. As versões 7.0 LTS e 7.4 continuam disponíveis, e o padrão de instalação nova não mudou.",
+      "kind": "patch",
+      "date": "2026-11-11"
+    },
     {
       "version": "2.14.1",
       "notes": "### Corrigido\n- **instalar-rsyslog.sh**:\n  - o encaminhamento TCP agora declara `StreamDriver=\"ptcp\"`. Antes, um host com `DefaultNetstreamDriver gtls` global e sem o `rsyslog-gnutls` ficava sem mandar nada, sem aviso;\n  - o reinício do rsyslog não trava mais: se ele não parar em 25 s, é encerrado à força, com aviso;\n  - `instalar` e `testar` conferem a conexão de verdade com o NewOS (TCP estabelecido) e mostram o erro do rsyslog quando não conecta, em vez de só \"mensagem enviada\".\n- **NBackup (FortiGate):** a coleta recusada passa a separar três casos:\n  - token aceito, mas sem permissão de backup (o perfil precisa de System = Read), com o comando do CLI;\n  - Trusted Host;\n  - token errado.\n- **NBackup:** espaços e quebras de linha coladas junto com o token são removidos.\n\n### Novo\n- **Logs › Quem está mandando:** botão **Remover**. Apaga a cópia local de uma fonte e faz o rsyslog soltar o arquivo, então a fonte não some de vez. Se ela continuar mandando, volta com o nome atual.",
