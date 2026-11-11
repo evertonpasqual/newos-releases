@@ -1,8 +1,14 @@
 {
-  "version": "2.14.2",
+  "version": "2.15.0",
   "date": "2026-11-11",
-  "kind": "patch",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.15.0",
+      "notes": "### Novo\n- **Network › Troubleshooting** (módulo novo, só para administradores, com registro na auditoria):\n  - **DNS:** consulta com `dig`, comparando o DNS do servidor com outros;\n  - **Ping e rota:** perda e latência, com o MTR mostrando cada salto;\n  - **Portas abertas:** portas e serviços de um host (`nmap`);\n  - **Descoberta de rede:** IP, MAC, fabricante e nome dos equipamentos de uma faixa, até /20;\n  - **Saúde das interfaces:** link, velocidade, duplex, erros e descartes, destacando o que está aumentando agora.\n- **Monitoramento › Zabbix › Proxy › Hosts monitorados:** lista os hosts que o Zabbix Server entregou a este proxy, com interfaces e quantidade de itens ativos.",
+      "kind": "minor",
+      "date": "2026-11-11"
+    },
     {
       "version": "2.14.2",
       "notes": "### Alterado\n- Monitoramento › Zabbix: a **8.0 LTS** agora aparece como versão estável (o repositório oficial já entrega a 8.0.0 final) e o aviso de prévia saiu da tela. As versões 7.0 LTS e 7.4 continuam disponíveis, e o padrão de instalação nova não mudou.",
