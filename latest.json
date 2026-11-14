@@ -1,8 +1,14 @@
 {
-  "version": "2.16.0",
-  "date": "2026-11-11",
+  "version": "2.17.0",
+  "date": "2026-11-14",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.17.0",
+      "notes": "### Console e SSH\n- Tela do console nova: logo da NewFront, NewOS e a versão, endereço do painel e o aviso de **acesso restrito** ao time NewFront. O mesmo aviso aparece antes do login por SSH.\n- Depois do login: resumo do servidor (cliente e situação no NewOS Manager, IPs, painel, uso, módulos).\n- **Logout automático**: console e SSH parados por 10 minutos encerram a sessão (`CONSOLE_TIMEOUT`). O Terminal do painel fica de fora.\n\n### NewOS Manager\n- O sinal de vida leva o resumo dos backups (backup do sistema e equipamentos do NBackup), sem senha nem chave: o Manager 1.8 mostra se está em dia e baixa as cópias direto do S3.",
+      "kind": "minor",
+      "date": "2026-11-14"
+    },
     {
       "version": "2.16.0",
       "notes": "### Novo\n- **Network › Troubleshooting**, segunda leva:\n  - **Loop na rede:** envia um quadro de teste e vê se ele volta pela própria interface. Também mede broadcasts por segundo, quadros repetidos e mudanças de topologia do STP (TCN), e mostra quem mais manda broadcast;\n  - **DHCP e IP duplicado:** lista todos os servidores DHCP que respondem, sem aceitar oferta (acha DHCP não autorizado), e confere por ARP se um IP está duplicado, livre ou em uso;\n  - **Vizinhos LLDP/CDP:** switch, porta, VLAN nativa e IP de gerência de onde o servidor está ligado;\n  - **Captura de pacotes:** `tcpdump` com filtro, até 20 MB, com resumo na tela e `.pcap` para baixar e abrir no Wireshark;\n  - **MTU do caminho:** maior pacote que chega sem fragmentar, apontando quando o ICMP está bloqueado no caminho (buraco negro de MTU);\n  - **HTTP/TLS:** código HTTP, tempos de DNS, conexão, TLS e primeira resposta, cabeçalhos e certificado (confiável ou não, dias até vencer, nomes);\n  - **SNMP:** teste v2c ou v3 com nome, descrição, uptime e interfaces do equipamento. A community e as senhas não ficam gravadas nem aparecem na saída.",
