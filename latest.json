@@ -1,8 +1,14 @@
 {
-  "version": "2.17.1",
+  "version": "2.18.0",
   "date": "2026-11-15",
-  "kind": "patch",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.18.0",
+      "notes": "### Visual (identidade NewFront)\n- Fonte **Ubuntu** e **Ubuntu Mono** (embutidas: funcionam sem internet), azul `#263C7E` e\n  verde-água `#1DAAB2` da identidade NewFront em todo o painel.\n- Menu lateral em **vidro** (estilo macOS), com brilho e fundo com luzes suaves; item ativo\n  em pílula de vidro.\n- **Menu recolhível**: o botão no alto do menu (ou Ctrl+B) deixa só os ícones para sobrar\n  espaço para as telas e dashboards. Passar o mouse mostra o nome; os grupos (Network,\n  Monitoramento…) abrem numa janelinha ao lado. O navegador lembra a escolha.\n\n### Prometheus › Alvos\n- Padrão de nomes NewFront, sempre em maiúsculas: **CLUSTER-CLIENTE**, **PVE-CLIENTE** e\n  **CEPH-CLIENTE**. Ao digitar o cliente (ou escolher o cluster), o nome se preenche sozinho.\n- Todo NewOS já vem com os jobs **node :9100**, **ceph :9283** e **zfs :9134** (não podem ser\n  removidos; os servidores que já existem ganham os que faltam, sem duplicar porta).\n- Exemplos das telas sem nomes de clientes.",
+      "kind": "minor",
+      "date": "2026-11-15"
+    },
     {
       "version": "2.17.1",
       "notes": "### Dashboards do Grafana (botão Grafana em Monitoramento › Prometheus › Alvos)\n- **Ceph** usa a nova tela de TV da NewFront: saúde, alertas traduzidos, OSDs por host,\n  capacidade, PGs/recuperação e desempenho. Sai presa ao Ceph cadastrado (nome exato) e com\n  o cliente no banner.\n- **Host (node_exporter)** e **Proxmox** com a nova identidade visual e reorganizados para\n  TV 1920×1080. A primeira tela mostra o que pede ação: no host, estado, alertas, serviços com\n  falha, saúde do sistema (OOM, disco só leitura, RAID, ZFS, inodes, NTP) e partições; no\n  Proxmox, VMs/CTs paradas, CPU/RAM/storage, nós, uso por storage, guests e os top 10. Os\n  gráficos de histórico ficam abaixo.\n- Proxmox **com replicação ZFS cadastrada** (campo \"Nós para a replicação ZFS\") ganha a faixa\n  de replicação na primeira tela (jobs, OK, atrasadas, com falha, desativadas) e, logo abaixo, os\n  jobs com origem → destino e a duração. Sem replicação cadastrada, o bloco não aparece.\n\n### Correção\n- Servidor revogado no Manager: o aviso \"Este servidor foi revogado\" na tela de ativação\n  sumia no ciclo seguinte do newos-link (virava \"aguardando chave\"). Agora fica até a chave nova.\n- Os painéis da tela de TV usam os plugins `marcusolsson-dynamictext-panel` e\n  `gapit-htmlgraphics-panel` no Grafana.",
