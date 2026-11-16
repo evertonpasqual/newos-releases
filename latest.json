@@ -1,8 +1,14 @@
 {
-  "version": "2.18.0",
-  "date": "2026-11-15",
-  "kind": "minor",
+  "version": "2.18.1",
+  "date": "2026-11-16",
+  "kind": "patch",
   "history": [
+    {
+      "version": "2.18.1",
+      "notes": "### Menu\n- Menu recolhido: passar o mouse num grupo (Network, Monitoramento…) abre a janelinha (fundo\n  sólido, legível sobre qualquer tela) com o nome do grupo e as opções clicáveis; ela fica aberta enquanto o mouse atravessa\n  até ela e não passa do fim da tela. Clicar no ícone também abre.\n- Submenus com netos (Monitoramento › Zabbix › Zabbix Agent; Prometheus › Alvos…): o item pai\n  em negrito e os filhos recuados, com uma guia verde-água, em vez de tudo na mesma altura.",
+      "kind": "patch",
+      "date": "2026-11-16"
+    },
     {
       "version": "2.18.0",
       "notes": "### Visual (identidade NewFront)\n- Fonte **Ubuntu** e **Ubuntu Mono** (embutidas: funcionam sem internet), azul `#263C7E` e\n  verde-água `#1DAAB2` da identidade NewFront em todo o painel.\n- Menu lateral em **vidro** (estilo macOS), com brilho e fundo com luzes suaves; item ativo\n  em pílula de vidro.\n- **Menu recolhível**: o botão no alto do menu (ou Ctrl+B) deixa só os ícones para sobrar\n  espaço para as telas e dashboards. Passar o mouse mostra o nome; os grupos (Network,\n  Monitoramento…) abrem numa janelinha ao lado. O navegador lembra a escolha.\n\n### Prometheus › Alvos\n- Padrão de nomes NewFront, sempre em maiúsculas: **CLUSTER-CLIENTE**, **PVE-CLIENTE** e\n  **CEPH-CLIENTE**. Ao digitar o cliente (ou escolher o cluster), o nome se preenche sozinho.\n- Todo NewOS já vem com os jobs **node :9100**, **ceph :9283** e **zfs :9134** (não podem ser\n  removidos; os servidores que já existem ganham os que faltam, sem duplicar porta).\n- Exemplos das telas sem nomes de clientes.",
