@@ -1,8 +1,14 @@
 {
-  "version": "2.18.1",
-  "date": "2026-11-16",
+  "version": "2.18.2",
+  "date": "2026-11-17",
   "kind": "patch",
   "history": [
+    {
+      "version": "2.18.2",
+      "notes": "### Logs\n- **Vários hosts atrás do mesmo IP (NAT)** agora aparecem separados em \"Quem está mandando\". Antes, 3 hosts que saíam pelo mesmo IP público apareciam como uma linha só, com o nome do último que mandou. A cópia local passa a ficar por IP e nome do host, e \"Ver\" e \"Remover\" valem para cada host.\n- O nome do host vem da mensagem e nunca sai da pasta (nome forjado com \"/\" ou \"..\" é neutralizado).\n- O que vai para o Graylog não mudou: cada mensagem já levava o nome do host.\n- Pastas recebidas antes da 2.18.2 aparecem como \"(antigo)\" até expirarem.",
+      "kind": "patch",
+      "date": "2026-11-17"
+    },
     {
       "version": "2.18.1",
       "notes": "### Menu\n- Menu recolhido: passar o mouse num grupo (Network, Monitoramento…) abre a janelinha (fundo\n  sólido, legível sobre qualquer tela) com o nome do grupo e as opções clicáveis; ela fica aberta enquanto o mouse atravessa\n  até ela e não passa do fim da tela. Clicar no ícone também abre.\n- Submenus com netos (Monitoramento › Zabbix › Zabbix Agent; Prometheus › Alvos…): o item pai\n  em negrito e os filhos recuados, com uma guia verde-água, em vez de tudo na mesma altura.",
