@@ -1,8 +1,14 @@
 {
-  "version": "2.18.2",
-  "date": "2026-11-17",
+  "version": "2.18.3",
+  "date": "2026-11-18",
   "kind": "patch",
   "history": [
+    {
+      "version": "2.18.3",
+      "notes": "### Prometheus: vCenter/ESXi\n- **Correção:** o exportador do VMware dava \"Sem coleta: HTTP Error 500\" com qualquer vCenter, mesmo com usuário e senha certos. O `vmware_exporter` 0.18.4 (o último, de 2022) quebra com o Twisted 24.7 ou mais novo, que o pip instala hoje. Agora ele é instalado com o Twisted 24.3.0, e a atualização corrige sozinha quem já tem o exportador instalado.\n- O \"Testar\" do vCenter diz a causa real, lida no log do exportador: senha recusada, sem permissão, vCenter inalcançável na 443, nome que não resolve ou erro de certificado.\n\n### Visual\n- **Aviso na barra de cima:** ao salvar ou testar, a barra fica verde (ok), vermelha (erro) ou amarela (aviso), com a mensagem e um × para fechar. O verde some sozinho; o erro e o aviso ficam até fechar.\n- A página **volta para onde estava** depois de salvar, em vez de pular para o topo.",
+      "kind": "patch",
+      "date": "2026-11-18"
+    },
     {
       "version": "2.18.2",
       "notes": "### Logs\n- **Vários hosts atrás do mesmo IP (NAT)** agora aparecem separados em \"Quem está mandando\". Antes, 3 hosts que saíam pelo mesmo IP público apareciam como uma linha só, com o nome do último que mandou. A cópia local passa a ficar por IP e nome do host, e \"Ver\" e \"Remover\" valem para cada host.\n- O nome do host vem da mensagem e nunca sai da pasta (nome forjado com \"/\" ou \"..\" é neutralizado).\n- O que vai para o Graylog não mudou: cada mensagem já levava o nome do host.\n- Pastas recebidas antes da 2.18.2 aparecem como \"(antigo)\" até expirarem.",
