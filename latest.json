@@ -1,8 +1,14 @@
 {
-  "version": "2.18.5",
-  "date": "2026-11-18",
-  "kind": "patch",
+  "version": "2.19.0",
+  "date": "2026-11-20",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.19.0",
+      "notes": "### Módulo Docker (novo)\n- **Menu Docker › Containers:** painel ao vivo de cada container (estado, há quanto tempo, portas com link, CPU e memória com o limite dele, rede, política de reinício) e do conjunto (CPU e memória contra o teto do Docker, espaço do /var). Iniciar, parar, reiniciar, ver os logs e excluir (com ou sem os volumes, confirmando o nome).\n- **Docker › Novo container:** cole o `docker run` que você já usa (ou monte pelo formulário). O NewOS confere antes de subir e mostra o que vai rodar; o botão \"Exemplo\" traz um comando pronto.\n- **Docker › Imagens e ajustes:** espaço do Docker, imagens (em uso ou não), \"Apagar imagens sem uso\" e os limites.\n- **O Docker não derruba o NewOS:**\n  - todos os containers juntos ficam num teto de memória e CPU (padrão 60%; o resto é do NewOS);\n  - cada container nasce com limite próprio (padrão 1 GB e 1 CPU), sem swap extra, até 1024 processos e sem ganho de privilégio;\n  - recusa `--privileged`, rede/PID/IPC do servidor, `--cap-add`, `--device`, `--security-opt`, o socket do Docker e pastas do sistema (pasta do servidor só em `/srv/docker`);\n  - recusa as portas do NewOS (SSH, painel, Zabbix, syslog, Prometheus, exporters, banco) e qualquer porta já em uso;\n  - logs dos containers com rotação (10 MB × 3); recusa subir container com o /var acima de 85%;\n  - rede própria dos containers (padrão 10.254.0.0/16), longe da 172.17.0.0/16 do Docker, que costuma colidir com a rede do cliente;\n  - o Docker bloqueia o encaminhamento ao iniciar (quebraria o NewOS roteando ou fazendo NAT): o módulo devolve esse controle ao firewall do NewOS.\n- **Portas publicadas** ficam abertas para qualquer origem, também com o Firewall ligado; os containers saem para a internet pelo firewall do NewOS.\n- Docker do Debian 13 (docker.io). Desligar o módulo para o Docker; imagens e volumes ficam em /var/lib/docker.",
+      "kind": "minor",
+      "date": "2026-11-20"
+    },
     {
       "version": "2.18.5",
       "notes": "### Armazenamento: ampliar o disco escolhendo o volume\n- **Correção:** depois de aumentar o disco da VM, o \"Ampliar\" da partição **criptografada** do sistema (NEWOS_CRYPT) só aumentava a partição. O LUKS e o LVM dentro dela continuavam do tamanho antigo, e o espaço novo ficava parado, sem aparecer em nenhum volume. Agora o LUKS e o volume físico LVM crescem junto.\n- **Para onde vai o espaço:** o \"Ampliar\" pergunta qual volume recebe o espaço novo (ex.: VAR, ROOT ou HOME) ou se ele fica livre no grupo para usar depois.\n- Partição que já foi ampliada por uma versão anterior, com o espaço parado dentro dela: o \"Ampliar\" aparece de novo e resolve.\n\n### /var não enche mais com logs\n- **Prometheus:** além do prazo (15 dias), o banco ganhou um **tamanho máximo em disco**. O padrão **auto** usa até 30% do /var; passou disso, o mais antigo é apagado antes do prazo. Dá para mudar em Prometheus › Configuração (ex.: 5GB).\n- **Logs do NewOS** (`/var/log/newos-*.log`): agora são rotacionados (20 MB ou 1 semana, 4 cópias comprimidas).\n- **Journal do sistema:** teto de 1 GB e 1 mês.\n- **Módulo Logs:** a cópia local é conferida a cada hora (antes, 1 vez por dia). Com o /var acima de 85%, ela perde os dias mais antigos até voltar a 80%. A fila do que ainda não foi entregue ao Graylog não é tocada.",
