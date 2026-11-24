@@ -1,8 +1,14 @@
 {
-  "version": "2.21.0",
-  "date": "2026-11-23",
+  "version": "2.22.0",
+  "date": "2026-11-24",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.22.0",
+      "notes": "### Recuperar a senha pelo NewOS Manager\n- No login, embaixo do \"Entrar\", um link discreto **Esqueci a senha**. A pessoa informa o usuário e o código do app autenticador (a recuperação exige a verificação em duas etapas ligada na conta).\n- Com o código certo, o NewOS pede ao **NewOS Manager** (versão 1.20 ou mais nova). Lá, **só um administrador** autoriza ou recusa. Ao autorizar, o Manager gera a senha nova (21 caracteres, mesmo padrão do cofre) e mostra **só para quem autorizou**. O NewOS recebe apenas o hash da senha, grava e confirma; a senha nunca aparece na tela do NewOS.\n- A tela do NewOS acompanha sozinha: aguardando, senha trocada, recusado ou expirado (o pedido vale 15 minutos). Se a tela for fechada, o agente aplica a troca no ciclo seguinte do mesmo jeito.\n- Código errado conta como tentativa de login errada (bloqueia depois de várias); o mesmo código não vale duas vezes. Tudo fica na auditoria do NewOS e do Manager.\n- Servidor sem ligação com o Manager (ou suspenso) não oferece a recuperação.",
+      "kind": "minor",
+      "date": "2026-11-24"
+    },
     {
       "version": "2.21.0",
       "notes": "### Menu novo\n- **Visual novo do menu lateral:** painel em vidro azul NewFront com ícones isométricos (no mesmo padrão do NewOS Manager, com desenhos próprios do NewOS). O item da página atual é uma aba clara que se junta ao conteúdo e desliza até o item clicado.\n- **Busca no menu:** campo no alto do menu (atalho **Ctrl+K**, ou ⌘K no Mac). Filtra itens e subitens enquanto você digita; Enter abre o primeiro, Esc limpa.\n- **Disco /var no pé do menu:** anel com o uso do /var (amarelo a partir de 80%, vermelho a partir de 90%), com atalho para Armazenamento.\n- **Menu recolhido:** vira um trilho de ícones redondos; os grupos abrem numa janela ao lado e a lista rola quando não cabe na tela.\n\n### Primeiro acesso\n- Depois da chave de ativação, a senha padrão do admin é trocada por uma **senha gerada pelo NewOS**: 21 caracteres com letras maiúsculas e minúsculas, ao menos 3 números e 3 especiais (`!@#$%^&*`). Não dá para digitar outra: a tela só mostra a senha para copiar (ou gerar outra) e pede a confirmação \"Copiei e guardei\".\n\n### Prometheus\n- Servidor novo já vem com **\"Guardar dados por: 5d\"** e a interface web em **\"Só este servidor\"** (os dados seguem para o central pelo remote_write). Servidores já configurados ficam como estão.",
