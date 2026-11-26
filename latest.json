@@ -1,8 +1,14 @@
 {
-  "version": "2.25.0",
-  "date": "2026-11-24",
+  "version": "2.26.0",
+  "date": "2026-11-26",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.26.0",
+      "notes": "### Debian pelo NewOS Manager\n- O agente do Manager passa a informar o Debian deste servidor: pacotes com versão nova (e quantos de segurança), a última busca (apt update), o kernel e se pede reinício. Vai no sinal de vida quando muda (e a cada 30 minutos).\n- O Manager (1.23 ou mais nova) pode mandar **buscar atualizações** (apt update), **instalar** (apt upgrade) ou fazer a **atualização completa** (apt dist-upgrade). O NewOS roda pelo mesmo caminho de Sistema › Servidor (em segundo plano, com log), recusa dist-upgrade que removeria pacotes sem a confirmação explícita e devolve o andamento e o resultado ao Manager.\n- Sem busca há mais de 1 dia, o agente roda o apt update sozinho (só atualiza a lista; não instala nada), para o Manager mostrar o que há de novo.",
+      "kind": "minor",
+      "date": "2026-11-26"
+    },
     {
       "version": "2.25.0",
       "notes": "### Cofre: uma senha só para o admin, o root e o newfront\n- **Ativação** e **Sistema › Servidor › Cadastrar no cofre**: a senha gerada (21 caracteres) passa a valer também para o **root** e o **newfront** (console e SSH), não só para o admin do painel. O item do cofre diz isso (campo **Linux (mesma senha)**, com o NewOS Manager 1.22). Se a troca de alguma conta Linux falhar, a tela avisa qual e onde trocar (Usuários › contas Linux); a do painel e o cofre seguem valendo.\n- **Recuperação de senha** autorizada no Manager: a senha nova vale também para o root e o newfront (o NewOS recebe só o hash, como antes; o Debian confere o mesmo hash bcrypt).\n\n### Menu: abrir pelo mouse sem atrapalhar a rolagem\n- Os grupos do menu continuam abrindo com o mouse, mas só quando o mouse **para** sobre o título (passar por cima, a caminho de outro item, não abre).\n- **Rolando o menu, nada abre nem fecha:** a lista fica parada sob o cursor.\n- O grupo aberto pelo mouse fica aberto enquanto o mouse estiver no menu; abrir outro fecha o anterior só se ele estiver abaixo (fechar um de cima puxaria a lista). Ao sair do menu, os grupos abertos de passagem fecham. Clicar no título continua fixando o grupo aberto.",
