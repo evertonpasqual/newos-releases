@@ -1,8 +1,14 @@
 {
-  "version": "2.26.0",
+  "version": "2.27.0",
   "date": "2026-11-26",
   "kind": "minor",
   "history": [
+    {
+      "version": "2.27.0",
+      "notes": "### NBackup: pfSense\n- Fabricante novo **pfSense** (CE e Plus): a coleta entra pela interface web (HTTPS) com um usuário que só precisa do privilégio **WebCfg - Diagnostics: Backup & Restore** e baixa o **config.xml completo** (sem os gráficos RRD), como o roteiro oficial do pfSense. Versões, diferenças, S3 e alertas iguais aos outros equipamentos; o certificado da WebGUI é fixado no primeiro acesso.\n- **Para recuperar:** instale um pfSense novo e use Diagnostics › Backup & Restore › Restore Backup com o arquivo baixado (a versão do pfSense sai como **.xml**). O passo a passo do usuário somente leitura está no cadastro.\n\n### Prometheus › Alvos: editar vários hosts de uma vez\n- Selecione os hosts e use **Editar selecionados**: troque o **cluster** e escolha os **jobs** (deixar exatamente estes, acrescentar ou tirar), para todos de uma vez. Ex.: crie o CLUSTER-TESTE, marque os hosts, escolha o cluster e marque node, zfs e ceph. Nenhum host fica sem job; o promtool confere antes de valer.\n\n### Backup pedido pelo NewOS Manager\n- O Manager (1.24 ou mais nova) pode mandar fazer **agora** o backup do sistema (gera e envia aos destinos configurados) ou a coleta do NBackup. Roda em segundo plano, numa unidade própria, e o andamento e o resultado (nome e tamanho do pacote, ou o erro) voltam ao Manager. No histórico do backup, a origem aparece como \"pedido pelo Manager\".\n\n### Dashboard\n- Ícones isométricos animados e discretos nos cartões de processador, memória, disco e rede.",
+      "kind": "minor",
+      "date": "2026-11-26"
+    },
     {
       "version": "2.26.0",
       "notes": "### Debian pelo NewOS Manager\n- O agente do Manager passa a informar o Debian deste servidor: pacotes com versão nova (e quantos de segurança), a última busca (apt update), o kernel e se pede reinício. Vai no sinal de vida quando muda (e a cada 30 minutos).\n- O Manager (1.23 ou mais nova) pode mandar **buscar atualizações** (apt update), **instalar** (apt upgrade) ou fazer a **atualização completa** (apt dist-upgrade). O NewOS roda pelo mesmo caminho de Sistema › Servidor (em segundo plano, com log), recusa dist-upgrade que removeria pacotes sem a confirmação explícita e devolve o andamento e o resultado ao Manager.\n- Sem busca há mais de 1 dia, o agente roda o apt update sozinho (só atualiza a lista; não instala nada), para o Manager mostrar o que há de novo.",
