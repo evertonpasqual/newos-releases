@@ -1,8 +1,14 @@
 {
-  "version": "2.28.1",
+  "version": "2.29.0",
   "date": "2026-11-27",
-  "kind": "patch",
+  "kind": "minor",
   "history": [
+    {
+      "version": "2.29.0",
+      "notes": "### Zabbix e Wazuh pelo NewOS Manager (Manager 1.25)\n- O agente do Manager (newos-link) passa a informar a **versão do Zabbix** (repositório oficial, Zabbix Agent e Zabbix Proxy: pacote e se estão rodando) e o **agente Wazuh** (instalado, versão, conectado, manager, grupo, id). Vai quando muda e a cada 10 minutos.\n- Ordem nova **trocar a versão do Zabbix** (7.0 LTS, 7.4 ou 8.0 LTS), também em massa pelo Manager: o mesmo caminho da tela Monitoramento › Zabbix (repositório oficial + Agent e Proxy instalados). Roda em segundo plano; o Manager recebe **concluído** só se o repositório ficou na versão pedida e o que estava rodando voltou a rodar, senão **falhou** com o motivo.\n- Ordem nova **instalar/ligar o Wazuh**: instala o agente onde falta, religa onde parou e atualiza para a versão padrão (manager e grupo do newos.conf).\n\n### Correção\n- Backup pedido pelo Manager: o agente esperava o backup terminar para seguir; backup com mais de 1 minuto estourava o tempo do ciclo. Agora a tarefa sobe em segundo plano e o sinal conta o andamento.",
+      "kind": "minor",
+      "date": "2026-11-27"
+    },
     {
       "version": "2.28.1",
       "notes": "### Wazuh: manager pelo nome\n- O agente Wazuh passa a apontar para **wazuh.newfront.cloud**. A 2.28.0 instalava com o IP do manager.\n- A atualização corrige sozinha os servidores que já tinham instalado o agente: troca o endereço no `ossec.conf` e reinicia o `wazuh-agent`. Também ajusta o `WAZUH_MANAGER` do `newos.conf`.",
